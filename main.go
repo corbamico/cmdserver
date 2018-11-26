@@ -29,7 +29,7 @@ func (w *webCmdShell) ServeHTTP(r http.ResponseWriter, rq *http.Request) {
 }
 
 func main() {
-	err := http.ListenAndServe(":80", newwebCmdShell())
+	err := http.ListenAndServe(":8080", newwebCmdShell())
 	if err != nil {
 		log.Fatalln("CmdShell server failed: ", err.Error())
 	}

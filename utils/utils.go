@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	processName string = "shadowsocks_local"
+	processName string = "shadowsocks-ser"
 )
 
 func findAndKillProcess(path string, info os.FileInfo, err error) error {
