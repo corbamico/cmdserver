@@ -23,6 +23,12 @@ func (w *webCmdShell) ServeHTTP(r http.ResponseWriter, rq *http.Request) {
 	case "/restart":
 		utils.RestartProc()
 		r.Write([]byte(`{"result":0}`))
+	case "/run":
+		r.Write([]byte(`{"result":0}`))
+		utils.RunProc()
+	case "/stop":
+		r.Write([]byte(`{"result":0}`))
+		utils.StopProc()
 	default:
 		r.WriteHeader(http.StatusNotFound)
 	}
