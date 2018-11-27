@@ -55,11 +55,13 @@ func StopProc() {
 
 //RunProc run the process of "processName"
 func RunProc() {
-	name := "./shadowsocks-server"
+	name := "./shadowserver.sh"
+	//shadowserver.sh
+	//#!/bin/bash
+	//shadowsocks-server &
 	cmd := exec.Command(name)
-	if err := cmd.Start(); err == nil {
-		time.Sleep(500 * time.Millisecond)
-		cmd.Process.Release()
+	if err := cmd.Run(); err != nil {
+		//log it
 	}
 }
 

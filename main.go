@@ -15,20 +15,22 @@ func newwebCmdShell() *webCmdShell {
 }
 
 func (w *webCmdShell) ServeHTTP(r http.ResponseWriter, rq *http.Request) {
+	//Notes:
+	// it will not direct to ServeHTTP while path="/restart"
 	switch rq.URL.Path {
 	case "/status":
 		stat := utils.StatProc()
 		result := fmt.Sprintf("{\"result\":%d}", stat)
 		r.Write([]byte(result))
-	case "/restart":
+	case "/rerun":
 		utils.RestartProc()
 		r.Write([]byte(`{"result":0}`))
 	case "/run":
 		r.Write([]byte(`{"result":0}`))
 		utils.RunProc()
-	case "/stop":
-		r.Write([]byte(`{"result":0}`))
-		utils.StopProc()
+	// case "/stop":
+	// 	r.Write([]byte(`{"result":0}`))
+	// 	utils.StopProc()
 	default:
 		r.WriteHeader(http.StatusNotFound)
 	}
