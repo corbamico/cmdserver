@@ -26,7 +26,7 @@ func findAndKillProcess(path string, info os.FileInfo, err error) error {
 
 	//we only walk for /proc/<pid>/status
 	if pids := reg.FindStringSubmatch(path); pids != nil {
-		pid, err := strconv.Atoi(pids[0])
+		pid, err := strconv.Atoi(pids[1])
 		if err != nil {
 			return nil
 		}
@@ -55,7 +55,8 @@ func StopProc() {
 
 //RunProc run the process of "processName"
 func RunProc() {
-	cmd := exec.Command(processName)
+	name := "./shadowsocks-server"
+	cmd := exec.Command(name)
 	if err := cmd.Start(); err == nil {
 		time.Sleep(500 * time.Millisecond)
 		cmd.Process.Release()
